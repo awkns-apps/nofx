@@ -7,8 +7,8 @@ services:
     container_name: nofx-trading
     restart: unless-stopped
     stop_grace_period: 30s  # 允许应用有 30 秒时间优雅关闭
-    # ports:
-    #   - "${NOFX_BACKEND_PORT:-8080}:8080"
+    ports:
+      - "${NOFX_BACKEND_PORT:-8080}:8080"
     volumes:
       - ./data:/app/data
       - /etc/localtime:/etc/localtime:ro
@@ -33,8 +33,8 @@ services:
       dockerfile: ./docker/Dockerfile.frontend
     container_name: nofx-frontend
     restart: unless-stopped
-    # ports:
-    #   - "${NOFX_FRONTEND_PORT:-3000}:80"
+    ports:
+      - "${NOFX_FRONTEND_PORT:-3000}:80"
     networks:
       - nofx-network
     depends_on:
